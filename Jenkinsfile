@@ -35,6 +35,17 @@ node {
     stage("Email notification") {
         sh "echo hello"
     }
+
+    withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
+            stage("kubernetes") {
+                sh "kubectl version"
+        }
+    }
+    withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
+            stage("helm") {
+                sh "helm version"
+        }
+    }
 }
 
 
