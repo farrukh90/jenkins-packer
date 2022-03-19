@@ -17,17 +17,17 @@ node {
             checkout([$class: 'GitSCM', branches: [[name: "*/${BRANCHNAME}"]], extensions: [], userRemoteConfigs: [[url: "${REPOLOCATION}"]]])
         }
     }
-    withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
+    withDockerContainer(image: 'hashicorp/packer'){
         stage("Initialize") {
             sh "packer init  ."
         }
     }
-    withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
+    withDockerContainer(image: 'hashicorp/packer'){
         stage("Validate") {
             sh "packer validate  ."
         }
     }
-    withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
+    withDockerContainer(image: 'hashicorp/packer'){
         stage("Apply") {
             sh "packer build image.pkr.hcl"
         }
