@@ -38,7 +38,7 @@ node {
 
     withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
             stage("kubernetes") {
-                sh "kubectl version --client-only"
+                sh "kubectl version --client"
         }
     }
     withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
