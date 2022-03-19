@@ -19,7 +19,7 @@ node {
     }
     withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
         stage("Initialize") {
-            sh "packer version" //init  ."
+            sh "packer init  ."
         }
     }
     withDockerContainer(image: '${AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/tools:latest'){
